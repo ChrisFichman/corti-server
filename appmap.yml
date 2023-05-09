@@ -1,0 +1,5 @@
+name: codespaces-express
+packages:
+  - path: dist
+language: javascript
+appmap_dir: tmp/appmap
