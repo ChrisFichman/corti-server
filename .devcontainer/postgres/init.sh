@@ -1,0 +1,16 @@
+CREATE ROLE us_server WITH NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD 'appMapFtw';
+GRANT CONNECT ON DATABASE us_db TO us_server;
+
+\connect us_db;
+
+CREATE SCHEMA url
+    CREATE TABLE map (
+        map_id serial PRIMARY KEY,
+        orig_url VARCHAR (2048) UNIQUE NOT NULL,
+        short_url VARCHAR (256) NOT NULL,
+        created_on TIMESTAMP DEFAULT NOW()
+    );
+
+GRANT USAGE ON SCHEMA url TO us_server;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA url TO us_server;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA url TO us_server;
