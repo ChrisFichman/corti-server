@@ -1,5 +1,9 @@
 name: codespaces-express
 packages:
   - path: dist
+  - path: dist/src/helpers
+    shallow: true
+    exclude:
+    - node_modules/knex
 language: javascript
 appmap_dir: tmp/appmap
